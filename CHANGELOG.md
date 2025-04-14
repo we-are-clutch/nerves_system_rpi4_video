@@ -12,6 +12,10 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v0.2.4
+
+Edit changelog to get CI working.
+
 ## v0.2.3
 
 Initial version of clutch nerves system.
