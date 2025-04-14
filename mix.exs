@@ -1,7 +1,7 @@
 defmodule NervesSystemRpi4.MixProject do
   use Mix.Project
 
-  @github_organization "guillego"
+  @github_organization "we-are-clutch"
   @app :nerves_system_rpi4_video
   @source_url "https://github.com/#{@github_organization}/#{@app}"
   @version Path.join(__DIR__, "VERSION")
@@ -76,7 +76,7 @@ defmodule NervesSystemRpi4.MixProject do
   end
 
   defp description do
-    "Nerves System - Raspberry Pi 4 (64-bits) + Video support"
+    "Clutch Nerves System - Raspberry Pi 4 (64-bits) + Video support"
   end
 
   defp docs do
