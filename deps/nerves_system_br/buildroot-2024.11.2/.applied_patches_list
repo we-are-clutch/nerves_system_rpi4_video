@@ -1,0 +1,17 @@
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0000-ffmpeg-change-version-to-5.1.4.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0001-erlang-clean-up-target-installation.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0002-mtools-Disable-iconv-use-on-target.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0003-NERVES_DEFCONFIG_DIR-support.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0004-Add-customizable-linux-logo.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0005-kernel-wireless-regdb-install-regdb-in-kernel.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0006-erlang-force-configure-options.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0007-erlang-support-OTP-21-27.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0008-erlang-don-t-install-to-target.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0009-rpi-firmware-support-custom-version-selection.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0010-Revert-package-libp11-bump-to-version-0.4.12.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0011-toolchain-external-refine-support-library-search-to-.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0012-fwup-bump-to-v1.12.0.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0013-uboot-support-alternative-TEE-filenames.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0014-Install-Linux-headers-to-staging.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0015-package-wpa_supplicant-add-Smart-card-option.patch
+/home/paul/nerves_system_rpi4_video/deps/nerves_system_br/patches/buildroot/0016-update-tpm2-tss-to-4.1.3.patch

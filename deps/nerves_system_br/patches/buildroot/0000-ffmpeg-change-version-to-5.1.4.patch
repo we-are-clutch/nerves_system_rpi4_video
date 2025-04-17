@@ -1,0 +1,12 @@
+--- a/package/ffmpeg/ffmpeg.mk
++++ b/package/ffmpeg/ffmpeg.mk
+@@ -5,7 +5,8 @@
+ #
+ ################################################################################
+ 
+-FFMPEG_VERSION = 6.1.2
++FFMPEG_VERSION = 5.1.4
++BR_NO_CHECK_HASH_FOR += $(FFMPEG_SOURCE)
+ FFMPEG_SOURCE = ffmpeg-$(FFMPEG_VERSION).tar.xz
+ FFMPEG_SITE = https://ffmpeg.org/releases
+ FFMPEG_INSTALL_STAGING = YES

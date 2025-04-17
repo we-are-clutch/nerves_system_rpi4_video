@@ -12,6 +12,11 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v0.2.6
+
+Bump ffmpeg down.
+
+
 ## v0.2.5
 
 Bump version number.
