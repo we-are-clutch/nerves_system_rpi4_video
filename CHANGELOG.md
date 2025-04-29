@@ -12,6 +12,9 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v0.2.9
+Lower power consumption.
+
 ## v0.2.8
 POE fan drivers.
 
