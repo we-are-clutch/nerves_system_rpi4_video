@@ -13,9 +13,25 @@ follows:
    features to the build infrastructure.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## v0.3.2
 Add libcamera just in case.
 =======
+=======
+## v1.31.0
+
+This is a major Buildroot update.
+
+Please see the [nerves_system_br v1.31.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.31.0)
+for additional information if you've forked this system.
+
+* Changes
+  * Add support for the RPi Touch Display 2
+
+* Updated dependencies
+  * [Buildroot 2025.02.1](https://lore.kernel.org/buildroot/60b8483c-b717-41ce-a406-bceb71c3a089@rnout.be/T/)
+
+>>>>>>> 04799c28 (v1.31.0 release)
 ## v1.30.1
 
 This is a security/bug fix update.
