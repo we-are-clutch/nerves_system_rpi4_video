@@ -1,0 +1,10 @@
+--- package/rpi-libcamera/rpi-libcamera.mk
++++ package/rpi-libcamera/rpi-libcamera.mk
+@@ -4,7 +4,7 @@
+ ################################################################################
+
+-RPI_LIBCAMERA_VERSION = v0.3.2+rpt20241119
++RPI_LIBCAMERA_VERSION = v0.5.0+rpt20250429
+ RPI_LIBCAMERA_SITE = $(call github,raspberrypi,libcamera,$(RPI_LIBCAMERA_VERSION))
+ RPI_LIBCAMERA_DEPENDENCIES = \
+ 	host-openssl \
