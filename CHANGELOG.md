@@ -12,8 +12,20 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+<<<<<<< HEAD
 ## v0.3.2
 Add libcamera just in case.
+=======
+## v1.30.1
+
+This is a security/bug fix update.
+
+* Updated dependencies
+  * [Erlang/OTP 27.3.3](https://erlang.org/download/OTP-27.3.3.README)
+  * [nerves_system_br v1.30.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.30.1)
+
+## v1.30.0
+>>>>>>> ac07c23a (v1.30.1 release)
 
 ## v0.3.0
 Enable USB audio.
