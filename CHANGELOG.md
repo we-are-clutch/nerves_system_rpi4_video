@@ -12,8 +12,11 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v0.3.3
+Sync to nerves_system_br v1.31.0.
+
 ## v0.3.2
-Add libcamera just in case.
+Bump version number.
 
 ## v0.3.0
 Enable USB audio.
