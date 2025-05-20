@@ -97,18 +97,6 @@ defmodule NervesSystemRpi4.MixProject do
     ]
   end
 
-  defp package do
-    [
-      files: package_files(),
-      licenses: ["GPL-2.0-only", "GPL-2.0-or-later"],
-      links: %{
-        "GitHub" => @source_url,
-        "REUSE Compliance" =>
-          "https://api.reuse.software/info/github.com/nerves-project/nerves_system_rpi4"
-      }
-    ]
-  end
-
   defp package_files do
     [
       "fwup_include",
