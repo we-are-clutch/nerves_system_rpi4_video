@@ -68,14 +68,11 @@ defmodule NervesSystemRpi4.MixProject do
   defp deps do
     [
       {:nerves, "~> 1.11", runtime: false},
-<<<<<<< HEAD
-      {:nerves_system_br, "1.31.0", runtime: false},
-=======
       {:nerves_system_br, "~> 1.31.1",
        github: "we-are-clutch/nerves_system_br",
        tag: "v1.31.1",
-       runtime: false},
->>>>>>> b3e6089b (Upgrade libcam to latest version.)
+       runtime: false,
+       nerves: [compile: false]},
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false}
@@ -94,6 +91,18 @@ defmodule NervesSystemRpi4.MixProject do
       source_ref: "v#{@version}",
       source_url: @source_url,
       skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
+    ]
+  end
+
+  defp package do
+    [
+      files: package_files(),
+      licenses: ["GPL-2.0-only", "GPL-2.0-or-later"],
+      links: %{
+        "GitHub" => @source_url,
+        "REUSE Compliance" =>
+          "https://api.reuse.software/info/github.com/nerves-project/nerves_system_rpi4"
+      }
     ]
   end
 
