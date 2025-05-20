@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: get-br-dependencies
 description: Get buildroot dependencies
 
@@ -78,3 +79,65 @@ runs:
       with:
         path: ~/.nerves/dl
         key: nerves-dl-${{ github.ref_name }}-${{ github.sha }} 
+=======
+name: 'Get Buildroot Dependencies'
+description: 'Get Buildroot Dependencies'
+inputs:
+  otp-version:
+    description: 'OTP version'
+    required: true
+  elixir-version:
+    description: 'Elixir version'
+    required: true
+  nerves-bootstrap-version:
+    description: 'Nerves bootstrap version'
+    required: true
+  hex-validate:
+    description: 'Validate hex packages'
+    default: 'true'
+  save-dl-cache:
+    description: 'Cache the packages downloaded by Buildroot'
+    default: 'true'
+  push-to-download-site:
+    description: 'Push Buildroot packages to an aws s3 bucket'
+    default: 'false'
+  download-site-url:
+    description: 'Public URL for downloading packages uploaded to the aws s3 bucket'
+    required: false
+  download-site-bucket-uri:
+    description: 'aws s3 bucket uri for uploading buildroot packages'
+    required: false
+  aws-role:
+    description: 'aws role with write access to download-site-bucket-uri'
+    required: false
+  aws-region:
+    description: 'aws region for the download-site-bucket-uri'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Elixir
+      uses: erlef/setup-beam@v1
+      with:
+        otp-version: ${{ inputs.otp-version }}
+        elixir-version: ${{ inputs.elixir-version }}
+
+    - name: Install nerves_bootstrap
+      run: mix archive.install hex nerves_bootstrap ${{ inputs.nerves-bootstrap-version }} --force
+      shell: bash
+
+    - name: Retrieve Dependencies
+      run: mix deps.get
+      shell: bash
+
+    - name: Create Build Directory
+      run: ./deps/clutch_nerves_system_br/create-build.sh nerves_defconfig ~/temp_nerves_system
+      shell: bash
+
+    - name: Get Buildroot Dependencies
+      run: |
+        cd ~/temp_nerves_system
+        make source
+      shell: bash 
+>>>>>>> 018329da (Add GitHub Actions workflow actions for CI)

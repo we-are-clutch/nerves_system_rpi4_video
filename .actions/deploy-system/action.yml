@@ -1,0 +1,41 @@
+name: 'Deploy Nerves System'
+description: 'Deploy Nerves System'
+inputs:
+  github-token:
+    description: 'GitHub token to use for creating a release'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Elixir
+      uses: erlef/setup-beam@v1
+      with:
+        otp-version: '27.3'
+        elixir-version: '1.18.3-otp-27'
+
+    - name: Install nerves_bootstrap
+      run: mix archive.install hex nerves_bootstrap 1.13.0 --force
+      shell: bash
+
+    - name: Retrieve Dependencies
+      run: mix deps.get
+      shell: bash
+
+    - name: Get version
+      id: version
+      run: echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Create GitHub Release
+      run: |
+        tag="v$(cat VERSION)"
+        echo "Creating release for $tag"
+        gh release create "$tag" \
+          --draft \
+          --title "Release $tag" \
+          --notes "$(grep -Pzo "## v.*?\n\n.*?(?=\n\n## |\n\n$)" CHANGELOG.md | sed 's/## v.*//g' | sed 's/^[[:space:]]*//')" \
+          ./_build/target_dev/nerves/images/*.fw
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+      shell: bash 

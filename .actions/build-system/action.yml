@@ -1,0 +1,46 @@
+name: 'Build Nerves System'
+description: 'Build Nerves System'
+inputs:
+  otp-version:
+    description: 'OTP version'
+    required: true
+  elixir-version:
+    description: 'Elixir version'
+    required: true
+  nerves-bootstrap-version:
+    description: 'Nerves bootstrap version'
+    required: true
+  hex-validate:
+    description: 'Validate hex packages'
+    default: 'true'
+  enable-ccache:
+    description: 'Enable ccache to speed up build time'
+    default: 'true'
+  ccache-initial-setup:
+    description: 'Initial ccache settings to apply'
+    default: '--max-size=1G'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Elixir
+      uses: erlef/setup-beam@v1
+      with:
+        otp-version: ${{ inputs.otp-version }}
+        elixir-version: ${{ inputs.elixir-version }}
+
+    - name: Install nerves_bootstrap
+      run: mix archive.install hex nerves_bootstrap ${{ inputs.nerves-bootstrap-version }} --force
+      shell: bash
+
+    - name: Retrieve Dependencies
+      run: mix deps.get
+      shell: bash
+
+    - name: Build system
+      run: mix compile
+      shell: bash
+
+    - name: Build firmware
+      run: mix firmware
+      shell: bash 
