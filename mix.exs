@@ -72,6 +72,7 @@ defmodule NervesSystemRpi4.MixProject do
        github: "we-are-clutch/nerves_system_br",
        tag: "v1.31.1",
        runtime: false,
+       optional: true,
        nerves: [compile: false]},
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
