@@ -13,7 +13,12 @@ follows:
    features to the build infrastructure.
 
 ## v0.3.3
+<<<<<<< HEAD
 Sync to nerves_system_br v1.31.0.
+=======
+
+Bump version number.
+>>>>>>> b3e6089b (Upgrade libcam to latest version.)
 
 ## v0.3.2
 Bump version number.
