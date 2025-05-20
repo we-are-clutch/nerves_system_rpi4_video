@@ -72,7 +72,6 @@ defmodule NervesSystemRpi4.MixProject do
        github: "we-are-clutch/nerves_system_br",
        tag: "v1.31.1",
        runtime: false,
-       optional: true,
        nerves: [compile: false]},
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
@@ -103,7 +102,8 @@ defmodule NervesSystemRpi4.MixProject do
         "GitHub" => @source_url,
         "REUSE Compliance" =>
           "https://api.reuse.software/info/github.com/nerves-project/nerves_system_rpi4"
-      }
+      },
+      exclude_deps: [:nerves_system_br]
     ]
   end
 
