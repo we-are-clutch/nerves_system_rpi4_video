@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 name: get-br-dependencies
 description: Get buildroot dependencies
 
@@ -82,62 +83,84 @@ runs:
 =======
 name: 'Get Buildroot Dependencies'
 description: 'Get Buildroot Dependencies'
+=======
+name: get-br-dependencies
+description: Get buildroot dependencies
+
+>>>>>>> 5d58b361 (Update GitHub Actions with implementations from gridpoint-com/actions-nerves-system)
 inputs:
   otp-version:
-    description: 'OTP version'
     required: true
+    description: Set OTP version to use
   elixir-version:
-    description: 'Elixir version'
     required: true
+    description: Set Elixir version to use
   nerves-bootstrap-version:
-    description: 'Nerves bootstrap version'
     required: true
+    description: Set nerves bootstrap version to use
   hex-validate:
-    description: 'Validate hex packages'
-    default: 'true'
+    required: false
+    type: boolean
+    default: true
   save-dl-cache:
-    description: 'Cache the packages downloaded by Buildroot'
-    default: 'true'
+    required: false
+    description: Cache the packages downloaded by Buildroot (`~/.nerves/dl`)
+    type: boolean
+    default: true
   push-to-download-site:
-    description: 'Push Buildroot packages to an aws s3 bucket'
-    default: 'false'
+    required: false
+    description: Push Buildroot packages to aws s3 bucket
+    type: boolean
+    default: false
   download-site-url:
-    description: 'Public URL for downloading packages uploaded to the aws s3 bucket'
-    required: false
+    required: false # required if `push-to-download-site` is true
+    description: public URL for downloading packages uploaded to the aws s3 bucket
+    default: 'http://dl.nerves-project.org'
   download-site-bucket-uri:
-    description: 'aws s3 bucket uri for uploading buildroot packages'
-    required: false
+    required: false # required if `push-to-download-site` is true
+    description: aws s3 bucket uri for uploading buildroot packages
   aws-role:
-    description: 'aws role with write access to download-site-bucket-uri'
-    required: false
+    required: false # required if `push-to-download-site` is true
   aws-region:
-    description: 'aws region for the download-site-bucket-uri'
-    required: false
+    required: false # required if `push-to-download-site` is true
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
-    - name: Setup Elixir
-      uses: erlef/setup-beam@v1
+    - uses: ./.actions/.internal/setup-beam-nerves
       with:
         otp-version: ${{ inputs.otp-version }}
         elixir-version: ${{ inputs.elixir-version }}
-
-    - name: Install nerves_bootstrap
-      run: mix archive.install hex nerves_bootstrap ${{ inputs.nerves-bootstrap-version }} --force
+        nerves-bootstrap-version: ${{ inputs.nerves-bootstrap-version }}
+    - uses: ./.actions/.internal/restore-nerves-downloads
+    - uses: ./.actions/.internal/mix-deps-get
+    - name: Validate Hex package
+      if: inputs.hex-validate == 'true'
       shell: bash
-
-    - name: Retrieve Dependencies
-      run: mix deps.get
+      run: mix hex.build
+    - name: Get Buildroot dependencies
+      if: inputs.push-to-download-site != 'true'
       shell: bash
-
-    - name: Create Build Directory
-      run: ./deps/clutch_nerves_system_br/create-build.sh nerves_defconfig ~/temp_nerves_system
-      shell: bash
-
-    - name: Get Buildroot Dependencies
       run: |
+        ./deps/nerves_system_br/create-build.sh nerves_defconfig ~/temp_nerves_system
         cd ~/temp_nerves_system
         make source
+<<<<<<< HEAD
       shell: bash 
 >>>>>>> 018329da (Add GitHub Actions workflow actions for CI)
+=======
+    - name: Get Buildroot dependencies on push-to-download-site
+      if: inputs.push-to-download-site == 'true'
+      uses: ./.actions/.internal/push-to-download-site
+      with:
+        download-site-url: ${{ inputs.download-site-url }}
+        download-site-bucket-uri: ${{ inputs.download-site-bucket-uri }}
+        aws-role: ${{ inputs.aws-role }}
+        aws-region: ${{ inputs.aws-region }}
+    - name: Save Nerves downloads
+      if: inputs.save-dl-cache == 'true'
+      uses: actions/cache/save@v4
+      with:
+        path: ~/.nerves/dl
+        key: nerves-dl-${{ github.ref_name }}-${{ github.sha }} 
+>>>>>>> 5d58b361 (Update GitHub Actions with implementations from gridpoint-com/actions-nerves-system)
