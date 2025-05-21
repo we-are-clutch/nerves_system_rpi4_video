@@ -36,6 +36,15 @@ defmodule NervesSystemRpi4.MixProject do
   defp bootstrap(args) do
     set_target()
     Application.start(:nerves_bootstrap)
+    
+    # This ensures nerves_bootstrap will load our config that maps clutch_nerves_system_br to nerves_system_br
+    System.put_env("NERVES_SYSTEM_BR", "clutch_nerves_system_br")
+    
+    # Try to load our patch code
+    if Code.ensure_compiled?(NervesSystemRpi4Video.NervesPatch) do
+      NervesSystemRpi4Video.NervesPatch.apply_patch()
+    end
+    
     Mix.Task.run("loadconfig", args)
   end
 
@@ -71,7 +80,8 @@ defmodule NervesSystemRpi4.MixProject do
       {:clutch_nerves_system_br, "~> 1.31.1"},
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.22", only: :docs, runtime: false}
+      {:ex_doc, "~> 0.22", only: :docs, runtime: false},
+      {:meck, "~> 0.9", only: [:dev, :test]}
     ]
   end
 
