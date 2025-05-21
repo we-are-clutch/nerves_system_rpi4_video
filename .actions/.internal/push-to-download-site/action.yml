@@ -23,7 +23,7 @@ runs:
     - name: Get Buildroot dependencies
       shell: bash
       run: |
-        ./deps/clutch_nerves_system_br/create-build.sh nerves_defconfig ~/temp_nerves_system
+        ./deps/nerves_system_br/create-build.sh nerves_defconfig ~/temp_nerves_system
         cd ~/temp_nerves_system
         make \
           BR2_PRIMARY_SITE=${{ inputs.download-site-url }} \
