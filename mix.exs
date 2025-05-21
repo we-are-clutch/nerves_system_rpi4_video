@@ -98,8 +98,7 @@ defmodule NervesSystemRpi4.MixProject do
         "GitHub" => @source_url,
         "REUSE Compliance" =>
           "https://api.reuse.software/info/github.com/nerves-project/nerves_system_rpi4"
-      },
-      exclude_deps: [:nerves_system_br]
+      }
     ]
   end
 
