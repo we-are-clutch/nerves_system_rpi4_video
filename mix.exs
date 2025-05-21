@@ -95,7 +95,7 @@ defmodule NervesSystemRpi4.MixProject do
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false},
-      {:meck, "~> 0.9", only: [:dev, :test]}
+      {:meck, "~> 0.9"}
     ]
   end
 
