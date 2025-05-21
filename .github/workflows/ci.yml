@@ -43,11 +43,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: gridpoint-com/actions-nerves-system@v1
-      - name: Create symlink for nerves_system_br
+      - name: Create symlink for nerves_system_br and patch Nerves
         run: |
-          # Create a symlink for nerves_system_br
-          mkdir -p deps
-          ln -sf clutch_nerves_system_br deps/nerves_system_br || true
+          # Run the patch script to create symlink and patch Nerves
+          ./.github/workflows/patch-nerves.sh
       - name: Build nerves_system
         uses: ./.actions/build-system
         with:
