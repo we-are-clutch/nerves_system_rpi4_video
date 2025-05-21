@@ -13,7 +13,8 @@ follows:
    features to the build infrastructure.
 
 ## v0.3.3
-Sync to nerves_system_br v1.31.0.
+
+Bump version number.
 
 ## v0.3.2
 Bump version number.
