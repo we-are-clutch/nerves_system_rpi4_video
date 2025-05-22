@@ -12,6 +12,10 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v0.3.5
+
+Downgrade libcam to 0.1.10.
+
 ## v0.3.4
 
 Upgrade libcam to latest version.
