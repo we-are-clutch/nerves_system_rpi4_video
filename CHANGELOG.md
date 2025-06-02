@@ -12,37 +12,6 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
-## v0.3.4
+## v0.3.5
 
-Upgrade libcam to latest version.
-
-## v0.3.3
-
-Bump version number.
-
-## v0.3.2
-Bump version number.
-
-## v0.3.0
-Enable USB audio.
-
-## v0.2.9
-Lower power consumption.
-
-## v0.2.8
-POE fan drivers.
-
-## v0.2.7
-V4L2 camera utilities.
-
-## v0.2.5
-
-Bump version number.
-
-## v0.2.4
-
-Edit changelog to get CI working.
-
-## v0.2.3
-
-Initial version of clutch nerves system.
+Revert to prior buildroot and linux kernels.

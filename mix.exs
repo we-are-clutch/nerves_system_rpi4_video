@@ -1,7 +1,7 @@
 defmodule NervesSystemRpi4.MixProject do
   use Mix.Project
 
-  @github_organization "we-are-clutch"
+  @github_organization "guillego"
   @app :nerves_system_rpi4_video
   @source_url "https://github.com/#{@github_organization}/#{@app}"
   @version Path.join(__DIR__, "VERSION")
@@ -12,8 +12,7 @@ defmodule NervesSystemRpi4.MixProject do
     [
       app: @app,
       version: @version,
-      # Because we're using OTP 27, we need to enforce Elixir 1.17 or later.
-      elixir: "~> 1.17",
+      elixir: "~> 1.6",
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
@@ -36,30 +35,7 @@ defmodule NervesSystemRpi4.MixProject do
   defp bootstrap(args) do
     set_target()
     Application.start(:nerves_bootstrap)
-    
-    # Fix: Create a symlink from deps/nerves_system_br to deps/clutch_nerves_system_br
-    create_symlink()
-    
     Mix.Task.run("loadconfig", args)
-    
-    # Apply monkey patch to override nerves_system_br
-    Code.compile_file("lib/nerves_system_rpi4_video.ex")
-    apply(NervesSystemRpi4Video, :patch_nerves, [])
-  end
-  
-  # Helper function to create the symlink
-  defp create_symlink do
-    # Make sure deps directory exists
-    File.mkdir_p!("deps")
-    
-    # Check if clutch_nerves_system_br exists
-    clutch_path = Path.expand("deps/clutch_nerves_system_br")
-    target_path = Path.expand("deps/nerves_system_br")
-    
-    if File.exists?(clutch_path) and not File.exists?(target_path) do
-      File.ln_s(clutch_path, target_path)
-      IO.puts("Created symlink from deps/nerves_system_br to deps/clutch_nerves_system_br")
-    end
   end
 
   defp nerves_package do
@@ -90,24 +66,23 @@ defmodule NervesSystemRpi4.MixProject do
 
   defp deps do
     [
-      {:nerves, "~> 1.11", runtime: false},
-      {:clutch_nerves_system_br, "~> 1.31.1"},
+      {:nerves, "~> 1.11.0", runtime: false},
+      {:nerves_system_br, "1.26.1", runtime: false},
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.22", only: :docs, runtime: false},
-      {:meck, "~> 0.9"}
+      {:ex_doc, "~> 0.22", only: :docs, runtime: false}
     ]
   end
 
   defp description do
-    "Clutch Nerves System - Raspberry Pi 4 (64-bits) + Video support"
+    "Nerves System - Raspberry Pi 4 (64-bits) + Video support"
   end
 
   defp docs do
     [
       extras: ["README.md", "CHANGELOG.md"],
       main: "readme",
-      assets: %{"assets" => "./assets"},
+      assets: "assets",
       source_ref: "v#{@version}",
       source_url: @source_url,
       skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
@@ -117,12 +92,8 @@ defmodule NervesSystemRpi4.MixProject do
   defp package do
     [
       files: package_files(),
-      licenses: ["GPL-2.0-only", "GPL-2.0-or-later"],
-      links: %{
-        "GitHub" => @source_url,
-        "REUSE Compliance" =>
-          "https://api.reuse.software/info/github.com/nerves-project/nerves_system_rpi4"
-      }
+      licenses: ["Apache-2.0"],
+      links: %{"GitHub" => @source_url}
     ]
   end
 
@@ -135,15 +106,14 @@ defmodule NervesSystemRpi4.MixProject do
       "config.txt",
       "fwup-ops.conf",
       "fwup.conf",
-      "LICENSES/*",
-      "linux-6.6.defconfig",
+      "LICENSE",
+      "linux-6.1.defconfig",
       "mix.exs",
       "nerves_defconfig",
       "post-build.sh",
       "post-createfs.sh",
       "ramoops.dts",
       "README.md",
-      "REUSE.toml",
       "VERSION"
     ]
   end
