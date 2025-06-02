@@ -7,8 +7,8 @@ on:
     tags: ["v*"]
 
 env:
-  OTP_VERSION: 27.3.3
-  ELIXIR_VERSION: 1.18.3-otp-27
+  OTP_VERSION: 26.2.5
+  ELIXIR_VERSION: 1.16.3-otp-26
   NERVES_BOOTSTRAP_VERSION: 1.13.0
 
 permissions:
