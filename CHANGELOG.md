@@ -12,6 +12,10 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v0.3.6
+
+Add iputils.
+
 ## v0.3.5
 
 Revert to prior buildroot and linux kernels.
