@@ -12,6 +12,10 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v0.3.8
+
+Update to linux 6.12.
+
 ## v0.3.7
 
 Update to linux 6.6.
