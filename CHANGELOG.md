@@ -12,6 +12,10 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+
+## v0.3.9
+More iprouting tools.
+
 ## v0.3.8
 Add iprouting tools.
 
