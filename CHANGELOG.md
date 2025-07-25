@@ -12,6 +12,9 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v0.5.1
+GPIO tools.
+
 ## v0.5.0
 GPIO libs.
 
